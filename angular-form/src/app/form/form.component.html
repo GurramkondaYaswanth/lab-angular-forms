@@ -1,0 +1,47 @@
+<div class="container">
+  <p>Registration Details</p>
+  <div class="formbody">
+    <form  (ngSubmit)="onSubmit()" [formGroup] = "RegisterForm">
+      <div class="row">
+        <div>
+          <input type="text" formControlName="firstName" placeholder="First Name" required >
+       
+         <small class="text-danger" style="color:red;"
+         *ngIf="RegisterForm.get('firstName').hasError('minlength')">
+            Minimum length of first Name is 3 charachters
+        </small>
+         
+        </div>
+
+        <div>
+          <input type="text" formControlName="lastName" placeholder="Last Name">
+          <small class="text-danger" style="color:red;"
+         *ngIf="RegisterForm.get('lastName').hasError('minlength')">
+            Minimum length of last Name is 3 charachters
+        </small>
+        </div>
+
+        <div>
+          <input type="text" formControlName="email" placeholder="Email Address">
+          <small  *ngIf="RegisterForm.hasError('email', 'email')" style="color:red;">
+            Please enter the correct email or valid email.
+          </small>
+        </div>
+
+
+        <div>
+          <input type="text" formControlName="password" placeholder="Password">
+         <small class="text-danger" style="color:red;"
+          *ngIf="RegisterForm.get('password').hasError('pattern')">
+             password must Contain an uppercase, lowercase, number and special char with min 8 char
+         </small>
+        </div>
+      </div>
+
+      <div class="subbtn">
+        <button class="regsiter btn "  [disabled]="RegisterForm.invalid">Register</button>
+        <button class="reset btn" type="reset" (click)="onReset()">Cancel</button>
+      </div>
+    </form> 
+  </div>
+</div>
